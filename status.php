@@ -34,12 +34,18 @@ try {
 
 	$installed = (bool) $systemConfig->getValue('installed', false);
 	$maintenance = (bool) $systemConfig->getValue('maintenance', false);
+	# see core/lib/private/legacy/defaults.php and core/themes/example/defaults.php
+	# for description and defaults
+	$defaults = new \OC_Defaults();
+	$defaults->getName();
+	$identifier = $defaults->getName();
 	$values=array(
 		'installed'=>$installed,
 		'maintenance' => $maintenance,
 		'version'=>implode('.', \OCP\Util::getVersion()),
 		'versionstring'=>OC_Util::getVersionString(),
-		'edition'=>OC_Util::getEditionString());
+		'edition'=>OC_Util::getEditionString(),
+		'productname'=>$identifier);
 	if (OC::$CLI) {
 		print_r($values);
 	} else {
